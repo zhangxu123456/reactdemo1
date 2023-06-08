@@ -100,8 +100,13 @@ const items: MenuItem[] = [
     icon: <FileOutlined />
   },
   {
-    label: '栏目10',
+    label: '自定义Hook',
     key: '/page10',
+    icon: <FileOutlined />
+  },
+  {
+    label: '高阶组件',
+    key: '/page11',
     icon: <FileOutlined />
   }
 ]

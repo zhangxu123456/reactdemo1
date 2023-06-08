@@ -14,6 +14,7 @@ const Login = lazy(()=>import("@/views/Login"))
 const Page8 = lazy(()=>import("@/views/Page8"))
 const Page9 = lazy(()=>import("@/views/Page9"))
 const Page10 = lazy(()=>import("@/views/Page10"))
+const Page11 = lazy(()=>import("@/views/Page11"))
 
 // 懒加载需要我们给一个
 
@@ -66,6 +67,10 @@ const routes = [
             {
                 path:"/page10",
                 element:lazyLoad(<Page10/>)
+            },
+            {
+                path:"/page11",
+                element:lazyLoad(<Page11/>)
             },
 
         ]

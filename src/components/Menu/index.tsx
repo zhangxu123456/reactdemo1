@@ -93,6 +93,16 @@ const items: MenuItem[] = [
     label: '栏目8',
     key: '/page8',
     icon: <FileOutlined />
+  },
+  {
+    label: '栏目9',
+    key: '/page9',
+    icon: <FileOutlined />
+  },
+  {
+    label: '栏目10',
+    key: '/page10',
+    icon: <FileOutlined />
   }
 ]
 

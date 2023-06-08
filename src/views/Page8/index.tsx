@@ -5,7 +5,8 @@ import VoteFooter from './VoteFooter';
 const Page8 = () => {
     let [supNum, setSupNum] = useState(10),
         [oppNum, setOppNum] = useState(0);
-        console.log('更新');
+    let [arr, setArr] = useState([1, 2, 3])
+    console.log('更新');
 
     const change = useCallback((type) => {
         let total = 1
@@ -16,10 +17,14 @@ const Page8 = () => {
             return;
         }
         setOppNum(oppNum + 1)
-    }, [supNum,oppNum]);
+    }, [supNum, oppNum]);
+    const onClickHandle = () =>{
+        arr.push(5)
+        setArr(arr)
+    }
     return (
         <div className='vote-box'>
-            <p>react学习</p>
+            <p onClick={onClickHandle}>react学习{arr}</p>
             <VoteMain supNum={supNum} oppNum={oppNum} />
             <VoteFooter change={change} />
         </div>

@@ -10,5 +10,9 @@ const VoteFooter = ()=>{
     <Button type='primary' danger onClick={() => change('opp')}>反对</Button>
 </div>
 }
-
+/* 
+    memo 
+    + 针对组件进行优化
+    + 传递给组件props的堆内存没有进行改变，则组件不进行重新渲染
+*/
 export default memo(VoteFooter);

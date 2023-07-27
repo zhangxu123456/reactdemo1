@@ -2,7 +2,7 @@ import { useNavigate, useRoutes } from 'react-router-dom';
 import router from '@/router'
 import { useEffect } from 'react';
 import { observer } from 'mobx-react-lite';
-const token = localStorage.getItem('pc-key')
+const token = localStorage.getItem('pc-key') || 123
 
 const ToPage1 = ()=>{
   const navigateTo = useNavigate()

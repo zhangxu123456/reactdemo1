@@ -1,0 +1,9 @@
+.Page8 {
+    width: 300px;
+    height: 300px;
+    border: 1px solid saddlebrown;
+    position: relative;
+    :global {
+        .line{width: 15px;height: 100%;position: absolute;right: 0;background-color: antiquewhite;}
+    }
+}

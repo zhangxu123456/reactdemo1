@@ -48,7 +48,7 @@ const Page5 = () => {
     const obj = [{a:1}]
     const obj1 = observable(obj)
 
-    return (<div>
+    return (<div> 
         {/* {
             counterStore.arrList.map((item,key)=>{
                 return <li key={key}><span>{item.name}|{item.age}</span></li>

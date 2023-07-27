@@ -12,6 +12,12 @@ const Page6 = lazy(()=>import("@/views/Page6"))
 const Page7 = lazy(()=>import("@/views/Page7"))
 const Login = lazy(()=>import("@/views/Login"))
 const Page8 = lazy(()=>import("@/views/Page8"))
+const Page9 = lazy(()=>import("@/views/Page9"))
+const Page10 = lazy(()=>import("@/views/Page10"))
+const Page11 = lazy(()=>import("@/views/Page11"))
+const Page12 = lazy(()=>import("@/views/Page12"))
+const Page13 = lazy(()=>import("@/views/Page13"))
+const Page14 = lazy(()=>import("@/views/Page14"))
 
 // 懒加载需要我们给一个
 
@@ -57,7 +63,30 @@ const routes = [
                 path:"/page8",
                 element:lazyLoad(<Page8/>)
             },
-
+            {
+                path:"/page9",
+                element:lazyLoad(<Page9/>)
+            },
+            {
+                path:"/page10",
+                element:lazyLoad(<Page10/>)
+            },
+            {
+                path:"/page11",
+                element:lazyLoad(<Page11/>)
+            },
+            {
+                path:"/page12",
+                element:lazyLoad(<Page12/>)
+            },
+            {
+                path:"/page13",
+                element:lazyLoad(<Page13/>)
+            },
+            {
+                path:"/page14",
+                element:lazyLoad(<Page14/>)
+            }
         ]
     },
     {

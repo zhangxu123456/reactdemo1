@@ -90,8 +90,38 @@ const items: MenuItem[] = [
     icon: <FileOutlined />
   },
   {
-    label: '栏目8',
+    label: '兄弟组件通信',
     key: '/page8',
+    icon: <FileOutlined />
+  },
+  {
+    label: '祖先组件传值memo等',
+    key: '/page9',
+    icon: <FileOutlined />
+  },
+  {
+    label: '自定义Hook',
+    key: '/page10',
+    icon: <FileOutlined />
+  },
+  {
+    label: '高阶组件',
+    key: '/page11',
+    icon: <FileOutlined />
+  },
+  {
+    label: 'useEffect',
+    key: '/page12',
+    icon: <FileOutlined />
+  },
+  {
+    label: 'useEffect',
+    key: '/page13',
+    icon: <FileOutlined />
+  },
+  {
+    label: 'useEffect',
+    key: '/page14',
     icon: <FileOutlined />
   }
 ]

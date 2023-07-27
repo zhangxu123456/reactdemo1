@@ -1,37 +1,32 @@
-import react, { useState, useEffect } from 'react'
-import { flushSync } from 'react-dom'
+import React, { useState, useCallback, useEffect } from 'react';
+import VoteMain from './VoteMain';
+import VoteFooter from './VoteFooter';
 
 const Page8 = () => {
-    console.log('渲染');
-    let [x, setX] = useState(0)
-    let [y, sety] = useState(0)
-    let [z, setz] = useState(0)
-    /* useEffect(()=>{
-        console.log(123);
-        return ()=>{
-            console.log(x, y);
+    let [supNum, setSupNum] = useState(10),
+        [oppNum, setOppNum] = useState(0);
+    let [arr, setArr] = useState([1, 2, 3])
+    console.log('更新');
+
+    const change = useCallback((type) => {
+        let total = 1
+        total = total + 1
+        console.log(total);
+        if (type === 'sup') {
+            setSupNum(supNum + 1)
+            return;
         }
-    },[]) */
-    const handle = () => {
-        for (let i = 5; i++; i < 10) {
-            setX(x + i)
-        }
-        /* setTimeout(() => {
-            setX(x + 1)
-            sety(y + 1)
-            console.log(x, y);
-        }) */
-        /* flushSync(()=>{
-            setX(10)
-            sety(20)
-        })
-        console.log(x,y);
-        setz(x+y) */
+        setOppNum(oppNum + 1)
+    }, [supNum, oppNum]);
+    const onClickHandle = () =>{
+        arr.push(5)
+        setArr(arr)
     }
     return (
-        <div>
-            <p onClick={handle}>page8</p>
-            <p>{x}</p>
+        <div className='vote-box'>
+            <p onClick={onClickHandle}>react学习{arr}</p>
+            <VoteMain supNum={supNum} oppNum={oppNum} />
+            <VoteFooter change={change} />
         </div>
     )
 }

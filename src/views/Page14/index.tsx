@@ -15,7 +15,15 @@ import React,{useRef,forwardRef, useImperativeHandle, useEffect} from 'react'
 }
 
 const SonComponent = forwardRef((props,refparams) =>{
-    const handle = ()=> {console.log('清楚')}
+    const pp = new Promise((resolve)=>{
+        setTimeout(()=>{
+            return resolve('12222222222')
+        },4000)
+    })
+    const handle = async ()=> {
+     const data =   await pp
+     console.log(data)
+    }
     const sonRef = useRef()
     useImperativeHandle(refparams,()=>{
         return {

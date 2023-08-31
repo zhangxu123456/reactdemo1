@@ -7,16 +7,21 @@ import "reset-css";
 // 全局样式
 import "@/assets/styles/global.scss";
 import App from './App'
-import {BrowserRouter} from "react-router-dom"
+import {BrowserRouter, RouterProvider} from "react-router-dom"
 //import Router from '@/router/index'
 // 转态管理
-import {Provider} from "react-redux"
 import store from  "@/store"
+import router from './App/router'
+
+import {Provider} from 'mobx-react';
+import {rootState} from './App/stateManager'
+import routes from './router';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store} rootState={rootState}>
+    {/* <BrowserRouter> */}
+      {/* <App /> */}
+    {/* </BrowserRouter> */}
+    <RouterProvider router={router} />
     </Provider>
 )

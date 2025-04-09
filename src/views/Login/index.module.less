@@ -1,18 +1,28 @@
-.actions {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    :global(.ant-pro-form-login-page-desc) {
-        color: #FFF;
-    }
-}
 
 .container {
-    background-color: white;
+    width: 100%;
     height: 100vh;
-    :global(.ant-pro-form-login-page-desc) {
-        color: rgba(255,255,255,0.65);
+    background-image: url('https://mdn.alipayobjects.com/huamei_gcee1x/afts/img/A*y0ZTS6WLwvgAAAAAAAAAAAAADml6AQ/fmt.webp');
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    display: flex;
+    // 右边居中
+    justify-content: flex-end;
+    align-items: center;
+}
+.loginBox {
+    width: 390px;
+    height: 350px;
+    padding: 32px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.65);
+    margin-right: 80px;
+    .loginTop{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        margin-bottom: 30px;
     }
+    .loginBtn{text-align: center;}
 }

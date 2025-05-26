@@ -1,11 +1,9 @@
-import Home from '@/views/Home/index'
-import Login from '@/views/Login/index'
-import './App.css'
-function App() {
-  
-  return (
-    <div><Login/></div>
-  )
-}
+import React from 'react';
+import Router from './router';
+import './App.css';
 
-export default App
+const App = () => {
+  return <Router />;
+};
+
+export default App;

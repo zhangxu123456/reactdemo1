@@ -3,41 +3,20 @@ import { createRoot } from 'react-dom/client';
 import { Button, Modal, message } from 'antd';
 import { omit } from 'loadsh';
 
-interface ProModal {
-    dialog: {
-        open: () => void;
-        forOpen: () => void;
-        forConfirm: () => void;
-    }
-}
-export const zx = () => {
-    const [open, setOpen] = useState('false')
 
-    return <div>zx{open}</div>
-};
 export const useProModal = () => {
     const isModalOpen = false
     const forOpenCallList = []
     const forConfirmCallList = []
     const ProModalRef = useRef(null);
+    const ChildComRef = useRef(null);
     const ctx = {
-        ProModalRef
+        ProModalRef,
+        ChildComRef,
+        context: {}
     }
 
     let setVisibleCopy = () => { }
-    /* const { promise, resolve, reject } = Promise.withResolvers()
-    let modalRoot = document.getElementById('modal-root');
-    if (!modalRoot) {
-        modalRoot = document.createElement('div');
-        modalRoot.id = 'modal-root';
-        document.body.appendChild(modalRoot);
-    }
-    const root = createRoot(modalRoot); */
-
-    // let visible = false
-    const setOpen = (value) => {
-        // visible = value
-    }
 
     const open = async () => {
         const closeLoading = message.loading('加载中...', 0)
@@ -52,19 +31,17 @@ export const useProModal = () => {
     }
 
     const forOpen = (call) => {
-        console.log('forOpen');
         forOpenCallList.push(call)
-        setOpen(true)
         return dialog
     }
     const forConfirm = (call) => {
-        console.log('forConfirm');
         forConfirmCallList.push(call)
         return dialog
     }
     const ProModal = (props) => {
         const [visible, setVisible] = useState(false); // 弹框状态
         const [confirmLoading, setConfirmLoading] = useState(false); // 按钮loading状态
+        
         setVisibleCopy = setVisible;
         const handleOk = async () => {
             try {
@@ -78,10 +55,10 @@ export const useProModal = () => {
             }
         }
         const handleCancel = () => {
+            setConfirmLoading(false)
             setVisible(false)
+            ctx.ChildComRef.current.resetFields()
         }
-        console.log('propsprops', props,omit(props, ['children']));
-
         return (
             <Modal
                 open={visible}
@@ -90,10 +67,10 @@ export const useProModal = () => {
                 confirmLoading={confirmLoading}
                 ref={ProModalRef}
                 {
-                    ...props
+                ...props
                 }
             >
-                {props?.children}
+                {React.cloneElement(props.children, { ctx })}
             </Modal>
         )
     }

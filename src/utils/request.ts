@@ -11,6 +11,8 @@ interface CustomError {
 interface RequestConfig extends AxiosRequestConfig {
   loading?: boolean;
   skipErrorHandler?: boolean;
+  Authorization?: string;
+  headers?:any
 }
 
 // 创建响应数据接口
@@ -23,9 +25,10 @@ interface ResponseData<T = any> {
 class Request {
   private instance: AxiosInstance;
   private baseConfig: RequestConfig = {
-    baseURL: process.env.REACT_APP_API_URL || '/api',
+    baseURL: /* process.env.REACT_APP_API_URL || */ '/api',
     timeout: 10000,
     loading: true,
+    // Authorization:'xxxxx',
   };
 
   constructor() {
@@ -39,10 +42,11 @@ class Request {
       (config: RequestConfig) => {
         // 获取token
         const token = localStorage.getItem('token');
+        config.headers['x-csrf-token'] = 'token'
         if (token) {
           config.headers = {
             ...config.headers,
-            Authorization: `Bearer ${token}`,
+            // Authorization: `Bearer ${token}`,
           };
         }
 
@@ -62,8 +66,10 @@ class Request {
     // 响应拦截器
     this.instance.interceptors.response.use(
       (response: AxiosResponse<ResponseData>) => {
+        console.log('response111111',response);
+        
         const { data, config } = response;
-        const { code, message: msg } = data;
+        const { code, message: msg,data:res } = data;
 
         // 关闭loading
         if ((config as RequestConfig).loading) {
@@ -78,7 +84,7 @@ class Request {
           return Promise.reject(new Error(msg));
         }
 
-        return data;
+        return res;
       },
       (error) => {
         // 关闭loading

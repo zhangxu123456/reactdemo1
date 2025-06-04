@@ -27,7 +27,7 @@ export interface CreateUserParams {
 }
 
 // 用户服务类
-export class UserService {
+export  class UserService {
   // 获取用户列表
   static async getUserList(params: UserListParams) {
     return request.get<{
@@ -43,7 +43,7 @@ export class UserService {
 
   // 创建用户
   static async createUser(data: CreateUserParams) {
-    return request.post<UserInfo>('/users', data);
+    return request.post<UserInfo>('/users/create', data);
   }
 
   // 更新用户
@@ -56,5 +56,3 @@ export class UserService {
     return request.delete(`/users/${id}`);
   }
 }
-
-export default UserService; 

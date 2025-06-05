@@ -8,7 +8,7 @@ const Home = () => {
     const handle = () => {
        /*  const { responsibilityInfo: { abnormalGridConnectionInfo } } = datasore
         console.log('abnormalGridConnectionInfo', abnormalGridConnectionInfo); */
-
+        console.log('测试1')
 
     }
     return (<div>

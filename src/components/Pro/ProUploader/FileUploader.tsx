@@ -13,6 +13,8 @@ const OssUpload = ({ children, onSuccess }) => {
     const [tempImage, setTempImage] = useState(null); // 临时本地图片
     const [uploadProgress, setUploadProgress] = useState(0); // 上传进度
     const [loading, setLoading] = useState(false);
+    const [stsToken, setStsToken] = useState(null)
+    const expirse = 3600;
     const getBase64 = (file: RcFile): Promise<string> =>
         new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -25,22 +27,30 @@ const OssUpload = ({ children, onSuccess }) => {
         const name = file.response.name
         if (name) {
             // file.preview = await getBase64(file.originFileObj as RcFile);
-           const url = await CommonService.getFileUrl({ url: name, preview: true })
-           console.log('urlurlurlurl',url);
-           
-           setPreviewImage(url);
-           setPreviewOpen(true);
-           setPreviewTitle('预览');
+            const url = await CommonService.getFileUrl({ url: name, preview: true })
+            console.log('urlurlurlurl', url);
+
+            setPreviewImage(url);
+            setPreviewOpen(true);
+            setPreviewTitle('预览');
         }
 
     };
     const handleCancel = () => setPreviewOpen(false);
+    let clearTime = null
+    const expirseHandle = () => { 
+        clearTimeout(clearTime)
+        clearTime = setTimeout(() => {
+            setStsToken(null)
+        }, expirse * 1000);
+    };
+   
     // 获取STS凭证
     const getStsToken = async () => {
         try {
             const data = await CommonService.getSts();
-            console.log('response', data);
-
+            setStsToken(data)
+            expirseHandle()
             return data;
         } catch (error) {
             message.error('获取上传凭证失败');
@@ -75,7 +85,17 @@ const OssUpload = ({ children, onSuccess }) => {
     const customRequest = async ({ file, onProgress, onSuccess, onError }) => {
         try {
             // 1. 获取STS凭证
-            const credentials = await getStsToken();
+            const getStsTokenHandle = async () => {
+                console.log('stsToken',stsToken);
+                
+                if (!stsToken) {
+                    const data = await getStsToken();
+                    return data
+                } else {
+                    return stsToken
+                }
+            };
+            const credentials = await getStsTokenHandle()
             console.log('credentials', credentials);
 
 
